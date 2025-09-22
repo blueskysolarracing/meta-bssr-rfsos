@@ -1,0 +1,270 @@
+// SPDX-License-Identifier: GPL-2.0+ OR X11
+/*
+ * Copyright 2019-2020 Toradex
+ */
+
+/dts-v1/;
+
+#include "imx8qm-apalis-v1.1.dtsilmnop"
+#include "imx8-apalis-ixora-v1.1.dtsi"
+
+/ {
+	model = "Toradex Apalis iMX8QM V1.1 on Apalis Ixora V1.1 Carrier Board";
+	compatible = "toradex,apalis-imx8-v1.1-ixora-v1.1",
+		     "toradex,apalis-imx8-v1.1-ixora",
+		     "toradex,apalis-imx8-v1.1",
+		     "toradex,apalis-imx8",
+		     "fsl,imx8qm";
+};
+
+&iomuxc {
+       pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_bssr>;
+
+
+        apalis-imx8qm {
+                pinctrl_bssr: bssrgpiogrp {
+                        fsl,pins =
+
+                            // Battery Module
+                            //<IMX8QM_UART1_CTS_B_DMA_SPI3_CS0 0x104>, //BMS_CS
+                            <IMX8QM_UART1_CTS_B_LSIO_GPIO0_IO27 0x104>, //BMS_CS
+                            <IMX8QM_M41_GPIO0_01_LSIO_GPIO0_IO13 0x104>, //SAFE_STATE_TRIGGER
+                            <IMX8QM_FLEXCAN2_RX_LSIO_GPIO4_IO01 0x104>, //HORN_ENABLE
+                            <IMX8QM_FLEXCAN2_TX_LSIO_GPIO4_IO02 0x104>, //LS_RELAY_CTRL
+                            <IMX8QM_MLB_SIG_LSIO_GPIO3_IO26 0x104>, //HS_RELAY_CTRL
+                            <IMX8QM_MLB_DATA_LSIO_GPIO3_IO28 0x104>, //PRE_RELAY_CTRL
+
+                            // Driver Interface Module
+                            <IMX8QM_SPI0_CS0_LSIO_GPIO3_IO05 0x104>, //STEERING_CS_GPIO
+                            <IMX8QM_SPI0_CS1_LSIO_GPIO3_IO06 0x104>, //STEERING_CS_DISP
+                            <IMX8QM_LVDS1_GPIO00_LSIO_GPIO1_IO10 0x104>, //STEERING_DISP_LED_CTRL
+                            <IMX8QM_ENET1_RGMII_RXD3_LSIO_GPIO6_IO21 0x104>, //REVERSE_CAMERA_CTRL
+                            <IMX8QM_ENET1_RGMII_RXD2_LSIO_GPIO6_IO20 0x104>, //BRAKE_SENSOR_BUFFER
+
+
+                            // Sensor Module
+                            <IMX8QM_QSPI1A_SS1_B_LSIO_GPIO4_IO20 0x104>, //SENSOR_STRAIN_RST
+                            <IMX8QM_QSPI1A_SCLK_LSIO_GPIO4_IO21 0x104>, //SENSOR_IMU_RST
+                            <IMX8QM_QSPI1A_DATA1_LSIO_GPIO4_IO25 0x104>, //HALL_EFFECT_A_3.3V
+                            <IMX8QM_QSPI1A_DATA2_LSIO_GPIO4_IO24 0x104>, //HALL_EFFECT_B_3.3V
+                            <IMX8QM_QSPI1A_DATA3_LSIO_GPIO4_IO23 0x104>, //GPS_FIX
+                            <IMX8QM_QSPI1A_SS0_B_LSIO_GPIO4_IO19 0x104>, //GPS_PPS
+                            <IMX8QM_QSPI1A_DQS_LSIO_GPIO4_IO22 0x104>, //GPS_EN
+
+                            // Motor Module
+                            <IMX8QM_ENET1_MDIO_LSIO_GPIO4_IO17 0x104>, //MOTOR_SPEED_PULSE
+                            <IMX8QM_ENET1_MDC_LSIO_GPIO4_IO18 0x104>, //MOTOR_LED
+                            <IMX8QM_ENET1_RGMII_TXD2_LSIO_GPIO6_IO14 0x104>, //MOTOR_MAIN
+                            <IMX8QM_ENET1_RGMII_TXD1_LSIO_GPIO6_IO13 0x104>, //MOTOR_FWD/REV
+                            <IMX8QM_ENET1_RGMII_TXD0_LSIO_GPIO6_IO12 0x104>, //MOTOR_VFM_UP
+                            <IMX8QM_M40_GPIO0_00_LSIO_GPIO0_IO08 0x104>, //VFM_MOTOR_PWM
+                            <IMX8QM_ENET1_RGMII_TXC_LSIO_GPIO6_IO10 0x104>, //MOTOR_VFM_DOWN
+                            <IMX8QM_ENET1_RGMII_TX_CTL_LSIO_GPIO6_IO11 0x104>, //MOTOR_PWR/ECO
+                            <IMX8QM_ENET1_RGMII_RX_CTL_LSIO_GPIO6_IO17 0x104>, //MOTOR_VFM_RESET
+                            <IMX8QM_ENET1_REFCLK_125M_25M_LSIO_GPIO4_IO16 0x104>, //MOTOR_MTA_0
+                            <IMX8QM_ESAI0_FSR_LSIO_GPIO2_IO22 0x104>, //MOTOR_MTA_1
+                            <IMX8QM_ESAI0_FST_LSIO_GPIO2_IO23 0x104>, //MOTOR_MTA_2
+                            <IMX8QM_SIM0_GPIO0_00_LSIO_GPIO0_IO05 0x104>, //MOTOR_MTA_3
+                            <IMX8QM_SIM0_RST_LSIO_GPIO0_IO01 0x104>, //VFM_MOTOR_STALL_SIG
+                            <IMX8QM_SIM0_CLK_LSIO_GPIO0_IO00 0x104>, //VFM_ENCODER_A_3.3V
+                            <IMX8QM_LVDS1_I2C0_SCL_LSIO_GPIO1_IO12 0x104>, //VFM_ENCODER_B_3.3V
+                            <IMX8QM_LVDS1_I2C0_SDA_LSIO_GPIO1_IO13 0x104>, //VFM_MOTOR_EN
+                            <IMX8QM_USDHC2_DATA2_LSIO_GPIO5_IO28 0x104>, //MOTOR_REGEN_CS
+                            <IMX8QM_USDHC2_DATA3_LSIO_GPIO5_IO29 0x104>, //MOTOR_ACCEL_CS
+
+                            // Toradex Module
+                            <IMX8QM_ENET1_RGMII_RXD1_LSIO_GPIO6_IO19 0x104>, //DEBUG_LED0_CTRL
+                            <IMX8QM_ENET1_RGMII_RXD0_LSIO_GPIO6_IO18 0x104>, //DEBUG_LED1_CTRL
+                            <IMX8QM_LVDS0_GPIO00_LSIO_GPIO1_IO04 0x104>, //DEBUG_LED2_CTRL
+                            <IMX8QM_M40_GPIO0_01_LSIO_GPIO0_IO09 0x104>, //USER_BUTTON_0
+                            <IMX8QM_M41_GPIO0_00_LSIO_GPIO0_IO12 0x104>, //HEATSINK_FAN_CTRL
+
+                            //<IMX8QM_SPI2_CS0_DMA_SPI2_CS0 0x104>, //ADC_CS
+                            <IMX8QM_SPI2_CS0_LSIO_GPIO3_IO10 0x104>, //ADC_CS
+
+                            // PSM
+                            <IMX8QM_USDHC1_DATA4_LSIO_GPIO5_IO19 0x104>, //PSM_MOTOR_CS
+                            <IMX8QM_USDHC1_DATA5_LSIO_GPIO5_IO20 0x104>, //PSM_ARRAY_CS
+                            <IMX8QM_USDHC1_DATA6_LSIO_GPIO5_IO21 0x104>, //PSM_BATT_CS
+                            <IMX8QM_QSPI1A_DATA0_LSIO_GPIO4_IO26 0x104>, //LV_PSM_PSU_CTRL
+                            <IMX8QM_SPI2_CS1_DMA_SPI2_CS1 0x104>; //LV_PSM_CS
+                };
+
+            // Steering Wheel
+            pinctrl_bssr_lpspi0: bssrlpspi0grp {
+                fsl,pins = <
+                    IMX8QM_SPI0_SCK_DMA_SPI0_SCK                    0x0600004c
+                    IMX8QM_SPI0_SDO_DMA_SPI0_SDO                    0x0600004c
+                    IMX8QM_SPI0_SDI_DMA_SPI0_SDI                    0x0600004c
+                >;
+            };
+
+            // PSM ADC
+            pinctrl_bssr_lpspi2: bssrlpspi2grp {
+                fsl,pins = <
+                    IMX8QM_SPI2_SCK_DMA_SPI2_SCK                    0x0600004c
+                    IMX8QM_SPI2_SDO_DMA_SPI2_SDO                    0x0600004c
+                    IMX8QM_SPI2_SDI_DMA_SPI2_SDI                    0x0600004c
+                >;
+            };
+
+            // BMS Motor
+            pinctrl_bssr_lpspi3: bssrlpspi3grp {
+                fsl,pins = <
+                    IMX8QM_UART1_TX_DMA_SPI3_SCK			0x0600004c
+                    IMX8QM_UART1_RX_DMA_SPI3_SDO            0x0600004c
+                    IMX8QM_UART1_RTS_B_DMA_SPI3_SDI			0x0600004c
+                >;
+            };
+
+            /*
+            // Debug
+            pinctrl_bssr_uart0: bssruart0grp {
+                fsl,pins = 
+                    <IMX8QM_UART0_RX_DMA_UART0_RX 0x104>, //DEBUG_UART3_RX
+                    <IMX8QM_UART0_TX_DMA_UART0_TX 0x104>; //DEBUG_UART3_TX
+            };
+            */
+            
+            // Radio
+            pinctrl_bssr_uart1: bssruart1grp {
+                fsl,pins = 
+                    <IMX8QM_LVDS0_I2C1_SCL_DMA_UART2_TX 0x104>, // Radio Tx
+                    <IMX8QM_LVDS0_I2C1_SDA_DMA_UART2_RX 0x104>; // Radio Rx
+            };
+            
+            /*
+            // Sensor
+            pinctrl_bssr_uart2: bssruart2grp {
+                fsl,pins = 
+                    <IMX8QM_M41_GPIO0_00_DMA_UART3_RX 0x104>, //SENSOR_UART2_TX
+                    <IMX8QM_M41_GPIO0_01_DMA_UART3_TX 0x104>; //SENSOR_UART2_RX
+                    
+            };
+            */
+            
+            // Sensor1
+            pinctrl_bssr_i2c0: bssri2c0grp {
+                fsl,pins = 
+                    <IMX8QM_GPT1_CLK_DMA_I2C2_SCL 0x104>, //SENSOR_I2C1_SCL
+                    <IMX8QM_GPT1_CAPTURE_DMA_I2C2_SDA 0x104>; //SENSOR_I2C1_SDA
+            };
+
+            // Sensor2
+            pinctrl_bssr_i2c1: bssri2c1grp {
+                fsl,pins = 
+                    <IMX8QM_SIM0_PD_DMA_I2C3_SCL 0x104>, //SENSOR_I2C3_SDA
+                    <IMX8QM_SIM0_POWER_EN_DMA_I2C3_SDA 0x104>; //SENSOR_I2C3_SCL
+            };
+
+            pinctrl_bssr_pwm2: pwm2grp {
+                fsl,pins = <
+                    IMX8QM_GPT1_COMPARE_LSIO_PWM2_OUT		0x00000020
+                >;
+            };
+            pinctrl_bssr_pwm_vfm: pwmgrpvfm {
+                fsl,pins = <
+                    IMX8QM_M40_GPIO0_00_M40_TPM0_CH0		0x00000020
+                >;
+            };
+        };
+};
+
+///delete-node/ backlight;
+/delete-node/ &pinctrl_lpspi0;
+
+// spidev0
+&lpspi0 {
+	pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_lpspi0>;
+    #address-cells = <1>;
+    #size-cells = <0>;
+	/delete-property/ cs-gpios;
+    
+        spitest0: spi@0 {
+                compatible = "toradex,evalspi";
+                reg = <0>;
+                spi-max-frequency = <4000000>;
+        };
+
+};
+
+&lpuart1 {
+    status = "disabled";
+};
+
+//spidev1
+&lpspi2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_bssr_lpspi2>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	/delete-property/ cs-gpios;
+
+	spiextra: extraspi@0 {
+		compatible = "toradex,evalspi";
+		reg = <0>;
+		spi-max-frequency = <4000000>;
+	};
+};
+
+// spidev2
+&lpspi3 {
+	status = "okay";
+	pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_lpspi3>;
+    #address-cells = <1>;
+    #size-cells = <0>;
+	/delete-property/ cs-gpios;
+
+        motorspidev: motorspi@0 {
+                compatible = "linux,spidev";
+                reg = <0>;
+                spi-max-frequency = <4000000>;
+        };
+};
+
+/*
+&lpuart0 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_uart0>;
+};
+*/
+
+&lpuart2 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_uart1>;
+};
+
+/*
+&lpuart3 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_uart2>;
+};
+*/
+
+&i2c2 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_i2c0>;
+};
+
+// on torizon side: /dev/i2c3 = strain sensor multiplexor
+&i2c3 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_i2c1>;
+};
+
+/* Apalis PWM1, MXM3 pin 2 */
+&pwm2 {
+    status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_pwm2>;
+	#pwm-cells = <3>;
+};
+
