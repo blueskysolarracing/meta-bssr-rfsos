@@ -5,7 +5,7 @@
 
 /dts-v1/;
 
-#include "imx8qm-apalis-v1.1.dtsilmnop"
+#include "imx8qm-apalis-v1.1.dtsi"
 #include "imx8-apalis-ixora-v1.1.dtsi"
 
 / {
