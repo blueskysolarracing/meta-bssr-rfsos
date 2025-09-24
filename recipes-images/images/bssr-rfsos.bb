@@ -1,8 +1,9 @@
-SUMMARY = "bssr-rfsos build recipe"
-DESCRIPTION = "Recipe to build the RFSOS version of the tdx min build"
+require recipes-images/images/tdx-reference-minimal-image.bb
+
+SUMMARY = "BSSR-RFSOS"
+DESCRIPTION = "Layer on toradex-reference-minimal that adds BSSR utils"
 LICENSE = "MIT"
 
-require recipes-images/images/tdx-reference-minimal-image.bb
 
 PN = "bssr-rfsos"
 export IMAGE_BASENAME = "bssr-rfsos"
