@@ -94,27 +94,27 @@
 		// Steering Wheel
 		pinctrl_bssr_lpspi0: bssrlpspi0grp {
 			fsl,pins = <
-				IMX8QM_SPI0_SCK_DMA_SPI0_SCK                    0x0600004c
-				IMX8QM_SPI0_SDO_DMA_SPI0_SDO                    0x0600004c
-				IMX8QM_SPI0_SDI_DMA_SPI0_SDI                    0x0600004c
+				IMX8QM_SPI0_SCK_DMA_SPI0_SCK 0x0600004c
+				IMX8QM_SPI0_SDO_DMA_SPI0_SDO 0x0600004c
+				IMX8QM_SPI0_SDI_DMA_SPI0_SDI 0x0600004c
 			>;
 		};
 
 		// PSM ADC
 		pinctrl_bssr_lpspi2: bssrlpspi2grp {
 			fsl,pins = <
-				IMX8QM_SPI2_SCK_DMA_SPI2_SCK                    0x0600004c
-				IMX8QM_SPI2_SDO_DMA_SPI2_SDO                    0x0600004c
-				IMX8QM_SPI2_SDI_DMA_SPI2_SDI                    0x0600004c
+				IMX8QM_SPI2_SCK_DMA_SPI2_SCK 0x0600004c
+				IMX8QM_SPI2_SDO_DMA_SPI2_SDO 0x0600004c
+				IMX8QM_SPI2_SDI_DMA_SPI2_SDI 0x0600004c
 			>;
 		};
 
 		// BMS Motor
 		pinctrl_bssr_lpspi3: bssrlpspi3grp {
 			fsl,pins = <
-				IMX8QM_UART1_TX_DMA_SPI3_SCK			0x0600004c
-				IMX8QM_UART1_RX_DMA_SPI3_SDO            0x0600004c
-				IMX8QM_UART1_RTS_B_DMA_SPI3_SDI			0x0600004c
+				IMX8QM_UART1_TX_DMA_SPI3_SCK 0x0600004c
+				IMX8QM_UART1_RX_DMA_SPI3_SDO 0x0600004c
+				IMX8QM_UART1_RTS_B_DMA_SPI3_SDI 0x0600004c
 			>;
 		};
 
@@ -172,7 +172,7 @@
 };
 
 // /delete-node/ backlight;
-/delete-node/ &pinctrl_lpspi0;
+// /delete-node/ &pinctrl_lpspi0;
 
 // spidev0
 &lpspi0 {
