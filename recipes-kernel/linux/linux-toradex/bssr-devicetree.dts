@@ -7,7 +7,6 @@
 
 #include "imx8qm-apalis-v1.1.dtsi"
 #include "imx8-apalis-ixora-v1.1.dtsi"
-
 / {
 	model = "Toradex Apalis iMX8QM V1.1 on Apalis Ixora V1.1 Carrier Board";
 	compatible = "toradex,apalis-imx8-v1.1-ixora-v1.1",
@@ -19,7 +18,7 @@
 
 &iomuxc {
 	pinctrl-names = "default";
-	// pinctrl-0 = <&pinctrl_bssr>;
+	//pinctrl-0 = <&pinctrl_bssr>;
 
 
 	apalis-imx8qm {
@@ -27,8 +26,6 @@
 			fsl,pins =
 
 				// Battery Module
-				//<IMX8QM_UART1_CTS_B_DMA_SPI3_CS0 0x104>, //BMS_CS
-				<IMX8QM_UART1_CTS_B_LSIO_GPIO0_IO27 0x104>, //BMS_CS
 				<IMX8QM_M41_GPIO0_01_LSIO_GPIO0_IO13 0x104>, //SAFE_STATE_TRIGGER
 				<IMX8QM_FLEXCAN2_RX_LSIO_GPIO4_IO01 0x104>, //HORN_ENABLE
 				<IMX8QM_FLEXCAN2_TX_LSIO_GPIO4_IO02 0x104>, //LS_RELAY_CTRL
@@ -36,8 +33,6 @@
 				<IMX8QM_MLB_DATA_LSIO_GPIO3_IO28 0x104>, //PRE_RELAY_CTRL
 
 				// Driver Interface Module
-				<IMX8QM_SPI0_CS0_LSIO_GPIO3_IO05 0x104>, //STEERING_CS_GPIO
-				<IMX8QM_SPI0_CS1_LSIO_GPIO3_IO06 0x104>, //STEERING_CS_DISP
 				<IMX8QM_LVDS1_GPIO00_LSIO_GPIO1_IO10 0x104>, //STEERING_DISP_LED_CTRL
 				<IMX8QM_ENET1_RGMII_RXD3_LSIO_GPIO6_IO21 0x104>, //REVERSE_CAMERA_CTRL
 				<IMX8QM_ENET1_RGMII_RXD2_LSIO_GPIO6_IO20 0x104>, //BRAKE_SENSOR_BUFFER
@@ -70,9 +65,7 @@
 				<IMX8QM_SIM0_CLK_LSIO_GPIO0_IO00 0x104>, //VFM_ENCODER_A_3.3V
 				<IMX8QM_LVDS1_I2C0_SCL_LSIO_GPIO1_IO12 0x104>, //VFM_ENCODER_B_3.3V
 				<IMX8QM_LVDS1_I2C0_SDA_LSIO_GPIO1_IO13 0x104>, //VFM_MOTOR_EN
-				<IMX8QM_USDHC2_DATA2_LSIO_GPIO5_IO28 0x104>, //MOTOR_REGEN_CS
-				<IMX8QM_USDHC2_DATA3_LSIO_GPIO5_IO29 0x104>, //MOTOR_ACCEL_CS
-
+				
 				// Toradex Module
 				<IMX8QM_ENET1_RGMII_RXD1_LSIO_GPIO6_IO19 0x104>, //DEBUG_LED0_CTRL
 				<IMX8QM_ENET1_RGMII_RXD0_LSIO_GPIO6_IO18 0x104>, //DEBUG_LED1_CTRL
@@ -80,18 +73,12 @@
 				<IMX8QM_M40_GPIO0_01_LSIO_GPIO0_IO09 0x104>, //USER_BUTTON_0
 				<IMX8QM_M41_GPIO0_00_LSIO_GPIO0_IO12 0x104>, //HEATSINK_FAN_CTRL
 
-				//<IMX8QM_SPI2_CS0_DMA_SPI2_CS0 0x104>, //ADC_CS
-				<IMX8QM_SPI2_CS0_LSIO_GPIO3_IO10 0x104>, //ADC_CS
 
 				// PSM
-				<IMX8QM_USDHC1_DATA4_LSIO_GPIO5_IO19 0x104>, //PSM_MOTOR_CS
-				<IMX8QM_USDHC1_DATA5_LSIO_GPIO5_IO20 0x104>, //PSM_ARRAY_CS
-				<IMX8QM_USDHC1_DATA6_LSIO_GPIO5_IO21 0x104>, //PSM_BATT_CS
 				<IMX8QM_QSPI1A_DATA0_LSIO_GPIO4_IO26 0x104>, //LV_PSM_PSU_CTRL
-				<IMX8QM_SPI2_CS1_DMA_SPI2_CS1 0x104>; //LV_PSM_CS
 		};
 
-		// Steering Wheel
+		// SPI0 - STEERING WHEEL //
 		pinctrl_bssr_lpspi0: bssrlpspi0grp {
 			fsl,pins = <
 				IMX8QM_SPI0_SCK_DMA_SPI0_SCK 0x0600004c
@@ -100,7 +87,14 @@
 			>;
 		};
 
-		// PSM ADC
+		pinctrl_bssr_lpspi0_cs: bssrlpspi0csgrp {
+			fsl, pins = 
+				<IMX8QM_SPI0_CS0_LSIO_GPIO3_IO05 0x104>, // STEERING_CS_GPIO
+				<IMX8QM_SPI0_CS1_LSIO_GPIO3_IO06 0x104>; // STEERING_CS_DISP
+ 
+		};
+
+		// SPI2 - PSM/ADC //
 		pinctrl_bssr_lpspi2: bssrlpspi2grp {
 			fsl,pins = <
 				IMX8QM_SPI2_SCK_DMA_SPI2_SCK 0x0600004c
@@ -108,50 +102,48 @@
 				IMX8QM_SPI2_SDI_DMA_SPI2_SDI 0x0600004c
 			>;
 		};
-
-		// BMS Motor
+		
+		pinctrl_bssr_lpspi2_cs: bssrlpspi2csgrp {
+			fsl, pins =
+				<IMX8QM_SPI2_CS0_LSIO_GPIO3_IO10     0x104>, // ADC_CS
+				<IMX8QM_USDHC1_DATA4_LSIO_GPIO5_IO19 0x104>, // PSM_MOTOR_CS
+				<IMX8QM_USDHC1_DATA5_LSIO_GPIO5_IO20 0x104>, // PSM_ARRAY_CS
+				<IMX8QM_USDHC1_DATA6_LSIO_GPIO5_IO21 0x104>, // PSM_BATT_CS
+				<IMX8QM_SPI2_CS1_DMA_SPI2_CS1        0x104>; // LV_PSM_CS
+		
+		};
+		
+		// SPI3 - BMS/MOTOR //
 		pinctrl_bssr_lpspi3: bssrlpspi3grp {
 			fsl,pins = <
-				IMX8QM_UART1_TX_DMA_SPI3_SCK 0x0600004c
-				IMX8QM_UART1_RX_DMA_SPI3_SDO 0x0600004c
-				IMX8QM_UART1_RTS_B_DMA_SPI3_SDI 0x0600004c
+				IMX8QM_UART1_TX_DMA_SPI3_SCK	0x0600004c
+				IMX8QM_UART1_RX_DMA_SPI3_SDO    0x0600004c
+				IMX8QM_UART1_RTS_B_DMA_SPI3_SDI	0x0600004c
 			>;
 		};
 
-		/*
-		// Debug
-		pinctrl_bssr_uart0: bssruart0grp {
-			fsl,pins = 
-			<IMX8QM_UART0_RX_DMA_UART0_RX 0x104>, //DEBUG_UART3_RX
-			<IMX8QM_UART0_TX_DMA_UART0_TX 0x104>; //DEBUG_UART3_TX
+		pinctrl_bssr_lpspi3_cs: bssrlpspi3csgrp {
+			fsl, pins =
+				<IMX8QM_UART1_CTS_B_LSIO_GPIO0_IO27  0x104>, // BMS_CS
+				<IMX8QM_USDHC2_DATA2_LSIO_GPIO5_IO28 0x104>, // MOTOR_REGEN_CS
+				<IMX8QM_USDHC2_DATA3_LSIO_GPIO5_IO29 0x104>; // MOTOR_ACCEL_CS
 		};
-		*/
 
-		// Radio
+		// UART - RADIO
 		pinctrl_bssr_uart1: bssruart1grp {
 			fsl,pins = 
 			<IMX8QM_LVDS0_I2C1_SCL_DMA_UART2_TX 0x104>, // Radio Tx
 			<IMX8QM_LVDS0_I2C1_SDA_DMA_UART2_RX 0x104>; // Radio Rx
 		};
 
-		/*
-		// Sensor
-		pinctrl_bssr_uart2: bssruart2grp {
-			fsl,pins = 
-			<IMX8QM_M41_GPIO0_00_DMA_UART3_RX 0x104>, //SENSOR_UART2_TX
-			<IMX8QM_M41_GPIO0_01_DMA_UART3_TX 0x104>; //SENSOR_UART2_RX
-
-		};
-		*/
-
-		// Sensor1
+		// I2C1 - SENSOR1
 		pinctrl_bssr_i2c0: bssri2c0grp {
 			fsl,pins = 
 			<IMX8QM_GPT1_CLK_DMA_I2C2_SCL 0x104>, //SENSOR_I2C1_SCL
 			<IMX8QM_GPT1_CAPTURE_DMA_I2C2_SDA 0x104>; //SENSOR_I2C1_SDA
 		};
 
-		// Sensor2
+		// I2C2 - SENSOR2
 		pinctrl_bssr_i2c1: bssri2c1grp {
 			fsl,pins = 
 			<IMX8QM_SIM0_PD_DMA_I2C3_SCL 0x104>, //SENSOR_I2C3_SDA
@@ -171,41 +163,68 @@
 	};
 };
 
-// /delete-node/ backlight;
-// /delete-node/ &pinctrl_lpspi0;
+///delete-node/ backlight;
+///delete-node/ &pinctrl_lpspi0;
 
-// spidev0
+// SPIDEV0
 &lpspi0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_bssr_lpspi0>;
 	#address-cells = <1>;
 	#size-cells = <0>;
-	/delete-property/ cs-gpios;
 
-	spitest0: spi@0 {
-		compatible = "toradex,evalspi";
-		reg = <0>;
-		spi-max-frequency = <4000000>;
+	// Define hardware chip selects
+	cs-gpios = <&pinctrl_bssr_lpspi0_cs>;
+
+	spidev0: spidev@0 {
+		compatible = "toradex,spidev";
+		reg = <0>; // CS[0]
+		spi-max-frequency = <10000000>;
 	};
 
+	spidev1: spidev@1 {
+		compatible = "toradex,spidev";
+		reg = <1>; // CS[1]
+		spi-max-frequency = <10000000>;
+	}
 };
 
-&lpuart1 {
-	status = "disabled";
-};
-
-//spidev1
+// SPIDEV1
 &lpspi2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_bssr_lpspi2>;
 	#address-cells = <1>;
 	#size-cells = <0>;
-	/delete-property/ cs-gpios;
+	cs-gpios = <&pinctrl_bssr_lpspi2_cs>;
 
-	spiextra: extraspi@0 {
-		compatible = "toradex,evalspi";
-		reg = <0>;
-		spi-max-frequency = <4000000>;
+	spidev2: spidev@2 {
+		compatible = "toradex,spidev";
+		reg = <0>; // CS[0]
+		spi-max-frequency = <10000000>;
+	};
+
+	spidev3: spidev@3 {
+		compatible = "toradex,spidev";
+		reg = <1>; // CS[1]
+		spi-max-frequency = <10000000>;
+	}
+	
+	spidev4: spidev@4 {
+		compatible = "toradex,spidev";
+		reg = <2>; // CS[2]
+		spi-max-frequency = <10000000>;
+	};
+
+	spidev5: spidev@5 {
+		compatible = "toradex,spidev";
+		reg = <3>; // CS[3]
+		spi-max-frequency = <10000000>;
+	}
+
+	spidev6: spidev@6 {
+		compatible = "toradex,spidev";
+		reg = <4>; // CS[4]
+		spi-max-frequency = <10000000>;
 	};
 };
 
@@ -216,36 +235,38 @@
 	pinctrl-0 = <&pinctrl_bssr_lpspi3>;
 	#address-cells = <1>;
 	#size-cells = <0>;
-	/delete-property/ cs-gpios;
+	cs-gpios = <&pinctrl_bssr_lpspi3_cs>;
 
-	motorspidev: motorspi@0 {
-		compatible = "linux,spidev";
-		reg = <0>;
-		spi-max-frequency = <4000000>;
+	spidev7: spidev@7 {
+		compatible = "toradex,spidev";
+		reg = <0>; // CS[0]
+		spi-max-frequency = <10000000>;
 	};
+
+	spidev8: spidev@8 {
+		compatible = "toradex,spidev";
+		reg = <1>; // CS[1]
+		spi-max-frequency = <10000000>;
+	}
+	
+	spidev9: spidev@9 {
+		compatible = "toradex,spidev";
+		reg = <2>; // CS[2]
+		spi-max-frequency = <10000000>;
+	};
+
+	
 };
 
-/*
-&lpuart0 {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_bssr_uart0>;
+&lpuart1 {
+	status = "disabled";
 };
-*/
 
 &lpuart2 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_bssr_uart1>;
 };
-
-/*
-&lpuart3 {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_bssr_uart2>;
-};
-*/
 
 &i2c2 {
 	status = "okay";
@@ -267,4 +288,3 @@
 	pinctrl-0 = <&pinctrl_pwm2>;
 	#pwm-cells = <3>;
 };
-
