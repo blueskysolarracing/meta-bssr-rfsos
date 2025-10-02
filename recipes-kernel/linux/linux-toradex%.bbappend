@@ -2,7 +2,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/linux-toradex:"
 
 CUSTOM_DEVICETREE = "bssr-devicetree.dts"
 
-SRC_URI:append = " file://${CUSTOM_DEVICETREE}"
+SRC_URI:append = " file://${CUSTOM_DEVICETREE} file://spidev.cfg"
 
 do_configure:append() {
 	# For arm32 bit devices
