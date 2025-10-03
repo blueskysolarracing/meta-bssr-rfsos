@@ -15,4 +15,5 @@ IMAGE_INSTALL:append = "\
         python3-dev \
         git \
         revolution \
-        revolution-utils"
+        revolution-utils \
+        revolution-service"
