@@ -1,8 +1,11 @@
 [Unit]
 Description=Revolution Autostart
+DefaultDependencies=no
+After=sysinit.target
 
 [Service]
 ExecStart=/usr/bin/revolution
 
 [Install]
 Alias=revolution.service
+WantedBy=multi-user.target
