@@ -1,0 +1,8 @@
+[Unit]
+Description=Revolution Autostart
+
+[Service]
+ExecStart=/usr/bin/revolution
+
+[Install]
+Alias=revolution.service
