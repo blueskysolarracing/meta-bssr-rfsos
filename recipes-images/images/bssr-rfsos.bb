@@ -14,6 +14,7 @@ IMAGE_INSTALL:append = "\
         python3-wheel \
         python3-dev \
         git \
+        i2c-tools \
         revolution \
         revolution-utils \
         revolution-service"

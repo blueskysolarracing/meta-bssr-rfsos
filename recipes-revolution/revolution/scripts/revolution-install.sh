@@ -14,6 +14,7 @@ echo "AUTOSTART=0" > revolution.conf
 
 echo "(3/4) Creating venv"
 python3 -m venv venv
+# echo "SKIPPING VENV"
 
 echo "(4/4) Installing python packages"
 source venv/bin/activate

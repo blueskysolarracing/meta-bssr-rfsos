@@ -122,18 +122,18 @@
     <IMX8QM_LVDS0_I2C1_SDA_DMA_UART2_RX 0x104>; // Radio Rx
   };
 
-  // I2C1 - SENSOR1
-  pinctrl_bssr_i2c0: bssri2c0grp {
+  // I2C2 - SENSOR1
+  pinctrl_bssr_i2c2: bssri2c2grp {
     fsl,pins = 
-    <IMX8QM_GPT1_CLK_DMA_I2C2_SCL 0x104>, //SENSOR_I2C1_SCL
-    <IMX8QM_GPT1_CAPTURE_DMA_I2C2_SDA 0x104>; //SENSOR_I2C1_SDA
+    <IMX8QM_GPT1_CLK_DMA_I2C2_SCL 0x04000020>, //SENSOR_I2C1_SCL
+    <IMX8QM_GPT1_CAPTURE_DMA_I2C2_SDA 0x04000020>; //SENSOR_I2C1_SDA
   };
 
-  // I2C2 - SENSOR2
-  pinctrl_bssr_i2c1: bssri2c1grp {
+  // I2C3 - SENSOR2
+  pinctrl_bssr_i2c3: bssri2c3grp {
     fsl,pins = 
-    <IMX8QM_SIM0_PD_DMA_I2C3_SCL 0x104>, //SENSOR_I2C3_SDA
-    <IMX8QM_SIM0_POWER_EN_DMA_I2C3_SDA 0x104>; //SENSOR_I2C3_SCL
+    <IMX8QM_SIM0_PD_DMA_I2C3_SCL 0x04000020>, //SENSOR_I2C3_SDA
+    <IMX8QM_SIM0_POWER_EN_DMA_I2C3_SDA 0x04000020>; //SENSOR_I2C3_SCL
   };
 
   pinctrl_bssr_pwm2: pwm2grp {
@@ -219,17 +219,32 @@
   pinctrl-0 = <&pinctrl_bssr_uart1>;
 };
 
+&i2c0 {
+  status = "disabled";
+};
+
+&i2c1 {
+  status = "disabled";
+};
+
+// In device tree: apalis-i2c1
 &i2c2 {
   status = "okay";
   pinctrl-names = "default";
-  pinctrl-0 = <&pinctrl_bssr_i2c0>;
+  pinctrl-0 = <&pinctrl_bssr_i2c2>;
+  #address-cells = <1>;
+	#size-cells = <0>;
+	clock-frequency = <200000>;
 };
 
-// on torizon side: /dev/i2c3 = strain sensor multiplexor
+// In device tree: apalis-i2c3
 &i2c3 {
   status = "okay";
   pinctrl-names = "default";
-  pinctrl-0 = <&pinctrl_bssr_i2c1>;
+  pinctrl-0 = <&pinctrl_bssr_i2c3>;
+  #address-cells = <1>;
+	#size-cells = <0>;
+	clock-frequency = <200000>;
 };
 
 /* Apalis PWM1, MXM3 pin 2 */
