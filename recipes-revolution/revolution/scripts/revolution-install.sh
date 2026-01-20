@@ -12,12 +12,12 @@ cd /usr/share/revolution-cfg
 touch revolution.conf
 echo "AUTOSTART=0" > revolution.conf
 
-echo "(3/4) Creating venv"
-python3 -m venv venv
-# echo "SKIPPING VENV"
+# echo "(3/4) Creating venv"
+# python3 -m venv venv
+echo "SKIPPING VENV"
 
 echo "(4/4) Installing python packages"
-source venv/bin/activate
+# source venv/bin/activate
 pip3 install -r /usr/share/revolution/requirements.txt
 
 echo "Done!"

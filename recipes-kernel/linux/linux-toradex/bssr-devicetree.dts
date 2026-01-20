@@ -234,7 +234,7 @@
   pinctrl-0 = <&pinctrl_bssr_i2c2>;
   #address-cells = <1>;
 	#size-cells = <0>;
-	clock-frequency = <200000>;
+	clock-frequency = <100000>;
 };
 
 // In device tree: apalis-i2c3
