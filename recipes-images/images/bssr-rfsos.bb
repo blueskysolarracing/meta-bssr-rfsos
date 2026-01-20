@@ -17,4 +17,7 @@ IMAGE_INSTALL:append = "\
         i2c-tools \
         revolution \
         revolution-utils \
-        revolution-service"
+        revolution-service \
+        hostapd-example \
+        iptables \
+        "
