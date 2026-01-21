@@ -1,0 +1,10 @@
+[Unit]
+Description=Network setup
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/bssrnet-start
+
+[Install]
+Alias=bssrnet.service
+WantedBy=multi-user.target

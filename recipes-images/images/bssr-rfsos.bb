@@ -18,6 +18,9 @@ IMAGE_INSTALL:append = "\
         revolution \
         revolution-utils \
         revolution-service \
+        bssrnet-utils \
+        bssrnet-config \
+        bssrnet-service \
         hostapd-example \
         iptables \
         "
