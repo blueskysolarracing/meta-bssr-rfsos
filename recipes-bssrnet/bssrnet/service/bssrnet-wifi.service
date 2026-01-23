@@ -1,0 +1,12 @@
+[Unit]
+Description=Connect to WiFi and obtain an IP
+Requires=sys-subsystem-net-devices-mlan0.device
+After=sys-subsystem-net-devices-mlan0.device
+
+[Service]
+ExecStart=/usr/bin/bssrnet-wifi
+Restart=always
+
+[Install]
+Alias=bssrnet-wifi.service
+WantedBy=multi-user.target
