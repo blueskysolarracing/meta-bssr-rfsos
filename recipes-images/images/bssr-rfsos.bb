@@ -24,3 +24,16 @@ IMAGE_INSTALL:append = "\
         hostapd-example \
         iptables \
         "
+IMAGE_INSTALL:remove = "\
+        connman \
+        connman-client \
+        connman-conf-dbg \
+        connman-conf-dev \
+        connman-dbg \
+        connman-dev \
+        connman-doc \
+        connman-src \
+        connman-tests \
+        connman-tools \
+        connman-wait-online \
+        "

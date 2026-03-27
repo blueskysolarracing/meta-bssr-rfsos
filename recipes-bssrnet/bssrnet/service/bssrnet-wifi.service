@@ -5,7 +5,7 @@ After=sys-subsystem-net-devices-mlan0.device
 
 [Service]
 ExecStart=/usr/bin/bssrnet-wifi
-Restart=always
+Restart=on-failure
 
 [Install]
 Alias=bssrnet-wifi.service
