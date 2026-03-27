@@ -1,8 +1,10 @@
 [Unit]
 Description=Revolution Autostart
+After=network-online.target
 
 [Service]
 ExecStart=/usr/bin/revolution
 
 [Install]
 Alias=revolution.service
+WantedBy=multi-user.target

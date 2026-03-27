@@ -1,0 +1,12 @@
+[Unit]
+Description=Start an AP that broadcasts WiFi
+Requires=sys-subsystem-net-devices-uap0.device
+After=sys-subsystem-net-devices-uap0.device
+
+[Service]
+ExecStart=/usr/bin/bssrnet-ap
+Restart=on-failure
+
+[Install]
+Alias=bssrnet-ap.service
+WantedBy=multi-user.target

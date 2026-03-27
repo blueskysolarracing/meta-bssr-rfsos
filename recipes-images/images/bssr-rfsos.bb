@@ -17,4 +17,23 @@ IMAGE_INSTALL:append = "\
         i2c-tools \
         revolution \
         revolution-utils \
-        revolution-service"
+        revolution-service \
+        bssrnet-utils \
+        bssrnet-config \
+        bssrnet-service \
+        hostapd-example \
+        iptables \
+        "
+IMAGE_INSTALL:remove = "\
+        connman \
+        connman-client \
+        connman-conf-dbg \
+        connman-conf-dev \
+        connman-dbg \
+        connman-dev \
+        connman-doc \
+        connman-src \
+        connman-tests \
+        connman-tools \
+        connman-wait-online \
+        "
